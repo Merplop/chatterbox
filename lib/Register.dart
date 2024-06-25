@@ -8,6 +8,11 @@ class Register extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
 
+  Future<void> handleButtonPress(BuildContext context) async {
+    await DatabaseManager.registerUser(nameController.text, phoneController.text, passwordController.text);
+    Navigator.pushReplacementNamed(context, '/homepage');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +61,7 @@ class Register extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                DatabaseManager.register_user(nameController.text, phoneController.text, passwordController.text);
-                Navigator.pushReplacementNamed(context, '/homepage');
+                handleButtonPress(context);
               },
               child: Text('Register'),
             ),

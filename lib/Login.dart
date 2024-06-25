@@ -13,7 +13,7 @@ class _LoginPageState extends State<Login> {
   String errorMessage = '';
 
   void handleLogin() async {
-    final returnCode = await DatabaseManager.login_user(phoneController.text, passwordController.text);
+    final returnCode = await DatabaseManager.loginUser(phoneController.text, passwordController.text);
     print("RETURN CODE: " + returnCode.toString());
     setState(() {
       if (returnCode == -1) {

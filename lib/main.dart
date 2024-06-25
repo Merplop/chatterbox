@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 
 void main() async {
-  await DatabaseManager.connect_to_db();
+  await DatabaseManager.connectToDB();
   runApp(ChatterboxApp());
 }
 
