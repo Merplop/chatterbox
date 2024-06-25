@@ -1,3 +1,3 @@
 # chatterbox
 
-Chat application using MongoDB and Flutter, with end-to-end RSA encryption.
+Cross-platform chat application using MongoDB and Flutter, with end-to-end RSA encryption.
