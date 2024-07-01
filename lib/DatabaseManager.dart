@@ -25,6 +25,7 @@ class DatabaseManager {
   static DbCollection? keypairsCollection;
   static String? currentUserId;
   static String? currentUserName;
+ // static final conversationStream = StreamController<List<Map<String, dynamic>>>.broadcast();
 
   static Future<void> connectToDB() async {
     db = await Db.create(mongoUri);
@@ -34,7 +35,17 @@ class DatabaseManager {
     conversationsCollection = db?.collection('conversations');
     keypairsCollection = db?.collection('keypairs');
     print('Connection to MongoDB successful');
+ //   startConversationStream();
   }
+
+  /*static void startConversationStream() async {
+    var pipeline = <Map<String, dynamic>>[];
+
+    await for (var change in conversationsCollection!.watch(pipeline)) {
+      var conversations = await conversationsCollection?.find().toList();
+      conversationStream.add(conversations!);
+    }
+  } */
 
   static Future<List<Map<String, dynamic>>> getMessages(String otherUser) async {
     List<Map<String, dynamic>> result = [];
@@ -66,14 +77,14 @@ class DatabaseManager {
     Map<String, dynamic> query = {'user': hashedUser};
     var response = await keypairsCollection?.findOne(query);
     if (response == null) {
-      Map<String, dynamic> docToInsert = {'user': hashedUser, 'publicKey': keyPair.publicKey, 'privateKey': keyPair.privateKey};
+      Map<String, dynamic> docToInsert = {'user': hashedUser, 'publicKey': keyPair.publicKey};
       await keypairsCollection?.insertOne(docToInsert);
     } else {
       await keypairsCollection?.updateOne(
           where.eq('user', hashedUser), modify.set('publicKey', keyPair.publicKey),
       );
     }
-  //  await KeychainManager.addKey(keyPair.privateKey, user);
+    await KeychainManager.addKey(keyPair.privateKey, user);
   }
 
   static Future<String> encryptMessage(String owner, String data) async {
@@ -93,10 +104,10 @@ class DatabaseManager {
   }
 
   static Future<String> decryptMessage(String data) async {
-//    var privateKey = await KeychainManager.getKey();
+    var privateKey = await KeychainManager.getKey();
     final hashedUser = hashData(currentUserId!);
     Map<String, dynamic> query = {'user': hashedUser};
-    var privateKey = (await keypairsCollection?.findOne(query))?['privateKey'];
+//    var privateKey = (await keypairsCollection?.findOne(query))?['privateKey'];
     return await EncryptionUtil.decryptRSA(message: data, privateKey: privateKey);
   }
 

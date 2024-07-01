@@ -14,7 +14,6 @@ class _LoginPageState extends State<Login> {
 
   void handleLogin() async {
     final returnCode = await DatabaseManager.loginUser(phoneController.text, passwordController.text);
-    print("RETURN CODE: " + returnCode.toString());
     setState(() {
       if (returnCode == -1) {
         errorMessage = 'Invalid phone number';
