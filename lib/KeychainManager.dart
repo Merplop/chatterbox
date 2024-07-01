@@ -37,23 +37,10 @@ class KeychainManager {
   }
 
   static Future<void> addKey(String keyToAdd, String user) async {
-    if (Platform.isWindows) {
-      await writePrivateKeyToFile(keyToAdd);
-    } else if (Platform.isAndroid) {
-    //  await storage.write(key: '$user privateKey', value: keyToAdd);
       await writePrivateKeyToFile(keyToAdd);
     }
-
-  }
 
   static Future<String> getKey() async {
-    if (Platform.isWindows) {
       return await readPrivateKeyFromFile();
-    } else if (Platform.isAndroid) {
-     // var result = await storage.read(key: 'privateKey');
-     // return result!;
-      return await readPrivateKeyFromFile();
-    }
-    return "";
   }
 }

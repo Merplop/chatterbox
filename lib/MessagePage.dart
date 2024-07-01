@@ -12,13 +12,14 @@ class MessagePage extends StatefulWidget {
 }
 
 class _MessagePageState extends State<MessagePage> {
+  late var messagesOnStartup;
   final TextEditingController messageController = TextEditingController();
   List<Map<String, dynamic>> messages = [];
 
   @override
   void initState() {
     super.initState();
-    _fetchMessages();
+    _fetchMessageLoop();
   }
 
   void _fetchMessages() async {
@@ -33,6 +34,13 @@ class _MessagePageState extends State<MessagePage> {
     });
   }
 
+  Future<void> _fetchMessageLoop() async {
+    while (true) {
+      _fetchMessages();
+      await Future.delayed(const Duration(seconds: 2));
+    }
+  }
+
   void _sendMessage() {
     final messageText = messageController.text;
     if (messageText.isNotEmpty) {
@@ -43,6 +51,7 @@ class _MessagePageState extends State<MessagePage> {
       DatabaseManager.addText(DatabaseManager.currentUserId!, widget.conversationId, messageText);
     }
   }
+
 
   @override
   Widget build(BuildContext context) {

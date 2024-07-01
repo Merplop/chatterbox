@@ -14,8 +14,6 @@ import 'dart:convert'; // for utf8.encode
 import 'dart:typed_data';
 import 'package:fast_rsa/fast_rsa.dart' as fastRsa;
 
-
-
 class DatabaseManager {
   static Db? db;
   static const String mongoUri = 'REDACTED';
