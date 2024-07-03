@@ -26,6 +26,10 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.add),
             onPressed: () => newConversation(context),
           ),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () => Navigator.pushReplacementNamed(context, '/homepage')
+          ),
         ],
       ),
         body: FutureBuilder<List<Map<String, dynamic>>>(
@@ -44,8 +48,8 @@ class HomePage extends StatelessWidget {
       itemBuilder: (context, index) {
     final conversation = conversations[index];
     return ListTile(
-      title: Text(conversation['name']!),
-      subtitle: Text(conversation['lastMessage']!),
+      title: Text(conversation['name']!, style: const TextStyle(color: Color(0xFF88C0D0))),
+      subtitle: Text(conversation['lastMessage']!, style: const TextStyle(color: Color(0xFF81A1C1))),
     onTap: () {
       Navigator.push(
         context,

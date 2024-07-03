@@ -16,7 +16,7 @@ import 'package:fast_rsa/fast_rsa.dart' as fastRsa;
 
 class DatabaseManager {
   static Db? db;
-  static const String mongoUri = 'REDACTED';
+  static const String mongoUri = 'mongodb+srv://mirohaapalainen:05xiHzhyngidFSW7@chattercluster.ljuhfn2.mongodb.net/?retryWrites=true&w=majority&appName=ChatterCluster';
   static DbCollection? usersCollection;
   static DbCollection? textsCollection;
   static DbCollection? conversationsCollection;

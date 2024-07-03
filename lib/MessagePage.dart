@@ -75,7 +75,7 @@ class _MessagePageState extends State<MessagePage> {
                     padding: EdgeInsets.all(10),
                     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     decoration: BoxDecoration(
-                      color: isMe ? Colors.blue : Colors.grey,
+                      color: isMe ? const Color(0xFF81A1C1) : const Color(0xFF88C0D0),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(

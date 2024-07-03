@@ -26,44 +26,63 @@ class Register extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextField(
+              cursorColor: const Color(0xFF88C0D0),
+              style: const TextStyle(color: Color(0xFF88C0D0)),
               controller: nameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Name',
+                labelStyle: TextStyle(color: Color(0xFF81A1C1)),
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 20),
             TextField(
+              cursorColor: const Color(0xFF88C0D0),
+              style: const TextStyle(color: Color(0xFF88C0D0)),
               controller: phoneController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
+                labelStyle: TextStyle(color: Color(0xFF81A1C1)),
                 labelText: 'Phone Number',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
+              cursorColor: const Color(0xFF88C0D0),
+              style: const TextStyle(color: Color(0xFF88C0D0)),
               controller: passwordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
+                labelStyle: TextStyle(color: Color(0xFF81A1C1)),
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
+              cursorColor: const Color(0xFF88C0D0),
+              style: const TextStyle(color: Color(0xFF88C0D0)),
               controller: confirmPasswordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
+                labelStyle: TextStyle(color: Color(0xFF81A1C1)),
                 labelText: 'Confirm Password',
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 handleButtonPress(context);
               },
               child: Text('Register'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF81A1C1), // Button color from Nord palette
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
             ),
           ],
         ),
