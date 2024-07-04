@@ -21,6 +21,7 @@ class DatabaseManager {
   static DbCollection? textsCollection;
   static DbCollection? conversationsCollection;
   static DbCollection? keypairsCollection;
+  static DbCollection? contactsCollection;
   static String? currentUserId;
   static String? currentUserName;
  // static final conversationStream = StreamController<List<Map<String, dynamic>>>.broadcast();
@@ -32,8 +33,8 @@ class DatabaseManager {
     textsCollection = db?.collection('texts');
     conversationsCollection = db?.collection('conversations');
     keypairsCollection = db?.collection('keypairs');
+    contactsCollection = db?.collection('contacts');
     print('Connection to MongoDB successful');
- //   startConversationStream();
   }
 
   /*static void startConversationStream() async {
@@ -44,6 +45,22 @@ class DatabaseManager {
       conversationStream.add(conversations!);
     }
   } */
+
+  static Future<List<Map<String, dynamic>>> getContacts() async {
+    Map<String, dynamic> query = {'owner': currentUserId};
+    final contacts = await contactsCollection?.find(query);
+    final streamIterator = StreamIterator(contacts!);
+    List<Map<String, dynamic>> result = [];
+    while (await streamIterator.moveNext()) {
+      result.add({'phone': streamIterator.current['contact_phone'], 'name': streamIterator.current['contact_name']});
+    }
+    return result;
+  }
+
+  static Future<void> addContact(String otherUserPhone, String otherUserName) async {
+    Map<String, dynamic> query = {'owner': currentUserId, 'contact_phone': otherUserPhone, 'contact_name': otherUserName};
+    await contactsCollection?.insertOne(query);
+  }
 
   static Future<List<Map<String, dynamic>>> getMessages(String otherUser) async {
     List<Map<String, dynamic>> result = [];

@@ -2,15 +2,30 @@ import 'package:chatterbox/DatabaseManager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
+
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<Register> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
+  String errorMessage = '';
 
-  Future<void> handleButtonPress(BuildContext context) async {
-    await DatabaseManager.registerUser(nameController.text, phoneController.text, passwordController.text);
-    Navigator.pushReplacementNamed(context, '/homepage');
+  void handleButtonPress() async {
+    print(passwordController.text);
+    print(confirmPasswordController.text);
+    if (passwordController.text != confirmPasswordController.text) {
+      setState(() {
+        errorMessage = 'Passwords do not match';
+      });
+    } else {
+      DatabaseManager.registerUser(nameController.text, phoneController.text, passwordController.text);
+      Navigator.pushReplacementNamed(context, '/homepage');
+    }
   }
 
   @override
@@ -70,10 +85,15 @@ class Register extends StatelessWidget {
               ),
               obscureText: true,
             ),
+            if (errorMessage.isNotEmpty)
+              Text(
+                errorMessage,
+                style: TextStyle(color: Theme.of(context).hintColor),
+              ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                handleButtonPress(context);
+                handleButtonPress();
               },
               child: Text('Register'),
               style: ElevatedButton.styleFrom(

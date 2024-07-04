@@ -65,7 +65,7 @@ class FrontPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'EpicChat',
+                'Chatterbox',
                 style: TextStyle(
                   fontSize: 48,
                   fontWeight: FontWeight.bold,
