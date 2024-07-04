@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:chatterbox/DatabaseManager.dart';
 import 'package:chatterbox/HomePage.dart';
 import 'package:chatterbox/Register.dart';
@@ -45,8 +47,15 @@ class ChatterboxApp extends StatelessWidget {
 }
 
 class FrontPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    var subtitles = ['The most secure SMS app ever conceived',
+      'No NSA backdoors here',
+      'Step aside, WhatsApp 😎',
+      'Look, I would love to steal your data, but I made my app just sooo secure'];
+    Random random = new Random();
+    var subtitleToShow = subtitles[random.nextInt(subtitles.length)];
     return Scaffold(
       backgroundColor: const Color(0xFF2E3440), // Background color from Nord palette
       body: Center(
@@ -63,8 +72,8 @@ class FrontPage extends StatelessWidget {
                   color: const Color(0xFFD8DEE9), // Text color from Nord palette
                 ),
               ),
-              const Text(
-                'The Most Secure SMS App Ever Conceived',
+              Text(
+                subtitleToShow,
                 style: TextStyle(
                     color: Color(0xFF5e81ac),
                     fontSize: 14.0),
