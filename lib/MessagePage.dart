@@ -2,6 +2,7 @@ import 'package:chatterbox/AddContactPage.dart';
 import 'package:chatterbox/DatabaseManager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MessagePage extends StatefulWidget {
   final String conversationId;
@@ -85,6 +86,9 @@ class _MessagePageState extends State<MessagePage> {
                 final message = messages[index];
                 final isMe = message['sender'] == DatabaseManager.currentUserId || message['sender'] == 'Me';
                 final senderText;
+                final DateTime time = message['date']!;
+                final DateFormat formatter = DateFormat('Hm');
+                String formattedTime = formatter.format(time);
                 isMe ? senderText = 'Me' : senderText = message['sender'];
                 return Align(
                   alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
@@ -109,6 +113,10 @@ class _MessagePageState extends State<MessagePage> {
                         Text(
                           message['message']!,
                           style: const TextStyle(color: Colors.white),
+                        ),
+                        Text(
+                          formattedTime,
+                          style: const TextStyle(color: Colors.white, fontSize: 10),
                         ),
                       ],
                     ),
