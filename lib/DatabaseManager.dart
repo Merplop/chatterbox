@@ -24,7 +24,6 @@ class DatabaseManager {
   static DbCollection? contactsCollection;
   static String? currentUserId;
   static String? currentUserName;
- // static final conversationStream = StreamController<List<Map<String, dynamic>>>.broadcast();
 
   static Future<void> connectToDB() async {
     db = await Db.create(mongoUri);
@@ -36,15 +35,6 @@ class DatabaseManager {
     contactsCollection = db?.collection('contacts');
     print('Connection to MongoDB successful');
   }
-
-  /*static void startConversationStream() async {
-    var pipeline = <Map<String, dynamic>>[];
-
-    await for (var change in conversationsCollection!.watch(pipeline)) {
-      var conversations = await conversationsCollection?.find().toList();
-      conversationStream.add(conversations!);
-    }
-  } */
 
   static Future<List<Map<String, dynamic>>> getContacts() async {
     Map<String, dynamic> query = {'owner': currentUserId};

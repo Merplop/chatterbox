@@ -16,8 +16,6 @@ class _RegisterPageState extends State<Register> {
   String errorMessage = '';
 
   void handleButtonPress() async {
-    print(passwordController.text);
-    print(confirmPasswordController.text);
     if (passwordController.text != confirmPasswordController.text) {
       setState(() {
         errorMessage = 'Passwords do not match';

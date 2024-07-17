@@ -52,7 +52,7 @@ class FrontPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var subtitles = ['The most secure SMS app ever conceived',
       'No NSA backdoors here',
-      'Step aside, WhatsApp 😎',
+      'Step aside, iMessage 😎',
       'Look, I would love to steal your data, but I made my app just sooo secure'];
     Random random = new Random();
     var subtitleToShow = subtitles[random.nextInt(subtitles.length)];

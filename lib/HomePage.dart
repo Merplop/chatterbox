@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
     } else if (snapshot.hasError) {
       return Center(child: Text('Error: ${snapshot.error}'));
     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-      return Center(child: Text('No conversations found.'));
+      return const Center(child: Text('Welcome to Chatterbox!'));
     } else {
       final conversations = snapshot.data!;
       return ListView.builder(

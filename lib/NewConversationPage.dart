@@ -17,7 +17,7 @@ class NewConversationPage extends StatelessWidget {
         ),
       );
     } else {
-      // Optionally, show an error message or prompt user to enter a valid phone number
+      // TODO: show an error message or prompt user to enter a valid phone number
     }
   }
 

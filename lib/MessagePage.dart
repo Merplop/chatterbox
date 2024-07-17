@@ -1,3 +1,4 @@
+import 'package:chatterbox/AddContactPage.dart';
 import 'package:chatterbox/DatabaseManager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,15 @@ class _MessagePageState extends State<MessagePage> {
   void initState() {
     super.initState();
     _fetchMessageLoop();
+  }
+
+  void newContact(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AddContactPage(contactPhone: widget.conversationId),
+        )
+    );
   }
 
   void _fetchMessages() async {
@@ -58,6 +68,13 @@ class _MessagePageState extends State<MessagePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Conversation with ${widget.conversationId}'),
+        actions: [
+          IconButton(
+            color: const Color(0xFF88C0D0),
+            icon: const Icon(Icons.add),
+            onPressed: () => newContact(context),
+          ),
+        ],
       ),
       body: Column(
         children: [
