@@ -29,11 +29,11 @@ class ChatterboxApp extends StatelessWidget {
           buttonColor: Color(0xFF88C0D0), // Nord8
           textTheme: ButtonTextTheme.primary,
         ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Color(0xFF3B4252), // Nord1
           titleTextStyle: TextStyle(color: Color(0xFFD8DEE9), fontSize: 20), // Nord4
           ),
-          iconTheme: IconThemeData(color: Color(0xFFD8DEE9)), // Nord4
+          iconTheme: const IconThemeData(color: Color(0xFFD8DEE9)), // Nord4
         ),
       initialRoute: '/',
       routes: {
@@ -64,21 +64,21 @@ class FrontPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'Chatterbox',
                 style: TextStyle(
                   fontSize: 48,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFFD8DEE9), // Text color from Nord palette
+                  color: Color(0xFFD8DEE9), // Text color from Nord palette
                 ),
               ),
               Text(
                 subtitleToShow,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Color(0xFF5e81ac),
                     fontSize: 14.0),
               ),
-              SizedBox(height: 48),
+              const SizedBox(height: 48),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
@@ -90,15 +90,15 @@ class FrontPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Sign In',
                   style: TextStyle(
                     fontSize: 18,
-                    color: const Color(0xFF2E3440), // Text color from Nord palette
+                    color: Color(0xFF2E3440), // Text color from Nord palette
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/register');
@@ -110,11 +110,11 @@ class FrontPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Register',
                   style: TextStyle(
                     fontSize: 18,
-                    color: const Color(0xFF2E3440), // Text color from Nord palette
+                    color: Color(0xFF2E3440), // Text color from Nord palette
                   ),
                 ),
               ),

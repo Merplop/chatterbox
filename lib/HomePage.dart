@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Conversations'),
+        title: const Text('Conversations'),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
         future: DatabaseManager.getConversationList(),
     builder: (context, snapshot) {
     if (snapshot.connectionState == ConnectionState.waiting) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
     } else if (snapshot.hasError) {
       return Center(child: Text('Error: ${snapshot.error}'));
     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {

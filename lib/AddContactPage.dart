@@ -43,7 +43,7 @@ class AddContactPage extends StatelessWidget {
                     ),
                     keyboardType: TextInputType.phone,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () => _returnToConversation(context),
                     child: const Text('Add Contact'),

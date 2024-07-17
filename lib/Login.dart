@@ -31,10 +31,10 @@ class _LoginPageState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,7 +49,7 @@ class _LoginPageState extends State<Login> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               cursorColor: const Color(0xFF88C0D0),
               style: const TextStyle(color: Color(0xFF88C0D0)),
@@ -70,7 +70,6 @@ class _LoginPageState extends State<Login> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: handleLogin,
-              child: Text('Login'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF81A1C1), // Button color from Nord palette
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -78,6 +77,7 @@ class _LoginPageState extends State<Login> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
+              child: const Text('Login'),
             ),
           ],
         ),

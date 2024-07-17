@@ -30,10 +30,10 @@ class _RegisterPageState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
+        title: const Text('Register'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,7 +48,7 @@ class _RegisterPageState extends State<Register> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               cursorColor: const Color(0xFF88C0D0),
               style: const TextStyle(color: Color(0xFF88C0D0)),
@@ -93,7 +93,6 @@ class _RegisterPageState extends State<Register> {
               onPressed: () {
                 handleButtonPress();
               },
-              child: Text('Register'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF81A1C1), // Button color from Nord palette
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -101,6 +100,7 @@ class _RegisterPageState extends State<Register> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
+              child: const Text('Register'),
             ),
           ],
         ),

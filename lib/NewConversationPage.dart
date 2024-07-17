@@ -25,7 +25,7 @@ class NewConversationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('New Conversation'),
+          title: const Text('New Conversation'),
         ),
         body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -34,16 +34,16 @@ class NewConversationPage extends StatelessWidget {
     children: [
     TextField(
     controller: phoneNumberController,
-    decoration: InputDecoration(
+    decoration: const InputDecoration(
     labelText: 'Enter phone number',
     border: OutlineInputBorder(),
     ),
     keyboardType: TextInputType.phone,
     ),
-    SizedBox(height: 20),
+    const SizedBox(height: 20),
     ElevatedButton(
     onPressed: () => _startConversation(context),
-    child: Text('Start Conversation'),
+    child: const Text('Start Conversation'),
     ),
     ])));
   }

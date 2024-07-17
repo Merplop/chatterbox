@@ -33,7 +33,6 @@ class DatabaseManager {
     conversationsCollection = db?.collection('conversations');
     keypairsCollection = db?.collection('keypairs');
     contactsCollection = db?.collection('contacts');
-    print('Connection to MongoDB successful');
   }
 
   static Future<List<Map<String, dynamic>>> getContacts() async {
