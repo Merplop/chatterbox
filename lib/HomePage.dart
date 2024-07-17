@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => MessagePage(
-                conversationId: conversation['name'],
+                conversationId: conversation['name']!,
               ),
             )
         );
