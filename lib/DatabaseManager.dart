@@ -35,6 +35,18 @@ class DatabaseManager {
     contactsCollection = db?.collection('contacts');
   }
 
+  static Future<List<Map<String, dynamic>>> getContactsAsList() async {
+    Map<String, dynamic> query = {'owner': currentUserId};
+    final contacts = await contactsCollection?.find(query);
+    final streamIterator = StreamIterator(contacts!);
+    List<Map<String, dynamic>> result = [];
+    while (await streamIterator.moveNext()) {
+    //  result[streamIterator.current['contact_phone']] = streamIterator.current['contact_name'];
+      result.add({'phone': streamIterator.current['contact_phone'], 'name': streamIterator.current['contact_name']});
+    }
+    return result;
+  }
+
   static Future<Map<String, String>> getContacts() async {
     Map<String, dynamic> query = {'owner': currentUserId};
     final contacts = await contactsCollection?.find(query);
@@ -124,11 +136,12 @@ class DatabaseManager {
     List<Map<String, dynamic>> result = [];
     List<Map<String, dynamic>> conversationList = await getEncryptedConversationList();
     for (int i = 0; i < conversationList.length; i++) {
-      var name = conversationList[i]['name'];
-      if (contactList[name] != null) {
-        name = contactList[name];
+      var contactPhone = conversationList[i]['name'];
+      var contactName = contactPhone;
+      if (contactList[contactPhone] != null) {
+        contactName = contactList[contactPhone];
    }
-      result.add({'name': name, 'lastMessage': await decryptMessage(conversationList[i]['lastMessage'])});
+      result.add({'phone-and-name': [contactPhone, contactName], 'lastMessage': await decryptMessage(conversationList[i]['lastMessage'])});
     }
     return result;
   }

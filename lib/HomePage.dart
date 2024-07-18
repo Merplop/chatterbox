@@ -23,6 +23,11 @@ class HomePage extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
+              color: const Color(0xFF88C0D0),
+              icon: const Icon(Icons.person),
+              onPressed: () => Navigator.pushReplacementNamed(context, '/contacts')
+          ),
+          IconButton(
           color: const Color(0xFF88C0D0),
             icon: const Icon(Icons.add),
             onPressed: () => newConversation(context),
@@ -50,14 +55,15 @@ class HomePage extends StatelessWidget {
       itemBuilder: (context, index) {
     final conversation = conversations[index];
     return Card(color: const Color(0xFF3B4252), child: ListTile(
-      title: Text(conversation['name']!, style: const TextStyle(color: Color(0xFF88C0D0))),
+      title: Text(conversation['phone-and-name'][1]!, style: const TextStyle(color: Color(0xFF88C0D0))),
       subtitle: Text(conversation['lastMessage']!, style: const TextStyle(color: Color(0xFF81A1C1))),
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => MessagePage(
-                conversationId: conversation['name']!,
+                conversationId: conversation['phone-and-name'][0]!,
+                nameToShow: conversation['phone-and-name'][1]!
               ),
             )
         );

@@ -13,7 +13,7 @@ class NewConversationPage extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MessagePage(conversationId: phoneNumber),
+          builder: (context) => MessagePage(conversationId: phoneNumber, nameToShow: phoneNumber),
         ),
       );
     } else {

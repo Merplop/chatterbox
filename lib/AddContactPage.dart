@@ -16,7 +16,7 @@ class AddContactPage extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MessagePage(conversationId: contactPhone),
+          builder: (context) => MessagePage(conversationId: contactPhone, nameToShow: contactName),
         ),
       );
     } else {

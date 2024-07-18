@@ -4,6 +4,7 @@ import 'package:chatterbox/DatabaseManager.dart';
 import 'package:chatterbox/HomePage.dart';
 import 'package:chatterbox/Register.dart';
 import 'package:chatterbox/Login.dart';
+import 'package:chatterbox/ContactsPage.dart';
 import 'package:flutter/material.dart';
 
 
@@ -40,7 +41,8 @@ class ChatterboxApp extends StatelessWidget {
         '/': (context) => FrontPage(),
         '/login': (context) => Login(),
         '/register': (context) => Register(),
-        '/homepage': (context) => HomePage()
+        '/homepage': (context) => HomePage(),
+        '/contacts': (context) => ContactsPage()
       },
     );
   }

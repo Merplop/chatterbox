@@ -6,8 +6,9 @@ import 'package:intl/intl.dart';
 
 class MessagePage extends StatefulWidget {
   final String conversationId;
+  final String nameToShow;
 
-  MessagePage({required this.conversationId});
+  MessagePage({required this.conversationId, required this.nameToShow});
 
   @override
   _MessagePageState createState() => _MessagePageState();
