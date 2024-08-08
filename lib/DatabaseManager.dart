@@ -13,6 +13,7 @@ import 'dart:convert'; // for utf8.encode
 //import 'package:crypto_keys/crypto_keys.dart';
 import 'dart:typed_data';
 import 'package:fast_rsa/fast_rsa.dart' as fastRsa;
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class DatabaseManager {
   static Db? db;
@@ -24,6 +25,7 @@ class DatabaseManager {
   static DbCollection? contactsCollection;
   static String? currentUserId;
   static String? currentUserName;
+  static final channel = WebSocketChannel.connect(Uri.parse('ws://localhost:8765'));
 
   static Future<void> connectToDB() async {
     db = await Db.create(mongoUri);
@@ -33,15 +35,36 @@ class DatabaseManager {
     conversationsCollection = db?.collection('conversations');
     keypairsCollection = db?.collection('keypairs');
     contactsCollection = db?.collection('contacts');
+    channel.sink.add('BLAH, Testing');
   }
 
   static Future<List<Map<String, dynamic>>> getContactsAsList() async {
-    Map<String, dynamic> query = {'owner': currentUserId};
+  /*  Map<String, dynamic> query = {'owner': currentUserId};
     final contacts = await contactsCollection?.find(query);
     final streamIterator = StreamIterator(contacts!);
     List<Map<String, dynamic>> result = [];
     while (await streamIterator.moveNext()) {
     //  result[streamIterator.current['contact_phone']] = streamIterator.current['contact_name'];
+      result.add({'phone': streamIterator.current['contact_phone'], 'name': streamIterator.current['contact_name']});
+    }
+    return result; */
+
+    List<Map<String, dynamic>> result = [];
+    channel.sink.add('READ, CONTACTS, {owner: $currentUserId}');
+
+    final streamIterator = StreamIterator(channel.stream);
+
+    // Waits for server to send DONE confirmation before parsing request.
+
+    // TODO: Implement time-out feature if server takes too long
+
+    while (await streamIterator.moveNext()) {
+      if (streamIterator.current == 'DONE') {
+        break;
+      }
+    }
+    while (await streamIterator.moveNext()) {
+      //  result[streamIterator.current['contact_phone']] = streamIterator.current['contact_name'];
       result.add({'phone': streamIterator.current['contact_phone'], 'name': streamIterator.current['contact_name']});
     }
     return result;
@@ -57,6 +80,10 @@ class DatabaseManager {
  //     result.add({'phone': streamIterator.current['contact_phone'], 'name': streamIterator.current['contact_name']});
     }
     return result;
+
+   // Map<String, String> result = {};
+
+
   }
 
   static Future<void> addContact(String otherUserPhone, String otherUserName) async {
